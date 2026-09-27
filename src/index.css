@@ -1,0 +1,79 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", serif;
+  
+  --color-bg: var(--bg);
+  --color-alt-surface: var(--alt-surface);
+  --color-text: var(--text);
+  --color-muted-text: var(--muted-text);
+  --color-accent-text: var(--accent-text);
+  --color-rose-text: var(--rose-text);
+  --color-brand-btn-bg: var(--brand-btn-bg);
+  --color-brand-btn-text: var(--brand-btn-text);
+  --color-line: var(--line);
+}
+
+:root {
+  --bg: #FDFBF7;
+  --alt-surface: #F7EFE9;
+  --text: #2A081C;
+  --muted-text: #5C4452;
+  --accent-text: #7A5A00;
+  --rose-text: #B3245F;
+  --brand-btn-bg: #3B0A2A;
+  --brand-btn-text: #FDFBF7;
+  --line: #E6D9DF;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #2A081C;
+  --alt-surface: #3B0A2A;
+  --text: #FDFBF7;
+  --muted-text: #C9B8C1;
+  --accent-text: #E5B842;
+  --rose-text: #F06AA0;
+  --brand-btn-bg: #E5B842;
+  --brand-btn-text: #2A081C;
+  --line: #5A2A45;
+  color-scheme: dark;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  body {
+    background-color: white;
+    color: black;
+  }
+  .no-print {
+    display: none !important;
+  }
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+}
