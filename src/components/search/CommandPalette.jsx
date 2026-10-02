@@ -88,7 +88,7 @@ export default function CommandPalette() {
 
       {/* Palette panel */}
       <div
-        className="relative w-full max-w-xl bg-bg border border-line rounded-xl shadow-2xl overflow-hidden"
+        className="relative w-full max-w-xl bg-bg rounded-xl shadow-2xl overflow-hidden"
         role="dialog"
         aria-modal="true"
         aria-label="Search and navigation"
@@ -99,7 +99,7 @@ export default function CommandPalette() {
             if (e.key === 'Escape') dispatch(closeSearch());
           }}
         >
-          <div className="flex items-center gap-2 border-b border-line px-4">
+          <div className="flex items-center gap-2 px-4">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-muted-text shrink-0" aria-hidden="true">
               <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
             </svg>
@@ -108,10 +108,10 @@ export default function CommandPalette() {
               value={query}
               onValueChange={(v) => dispatch(setSearchQuery(v))}
               placeholder="Search pages, services, consultations..."
-              className="flex-1 py-4 bg-transparent text-text placeholder-muted-text text-base outline-none"
+              className="flex-1 py-4 bg-transparent text-text placeholder-muted-text text-base outline-none focus:outline-none ring-0 border-0 focus:ring-0 focus:border-0"
               aria-label="Search"
             />
-            <kbd className="hidden sm:inline-flex items-center gap-1 text-xs text-muted-text border border-line rounded px-1.5 py-0.5 font-mono">
+            <kbd className="hidden sm:inline-flex items-center gap-1 text-xs text-muted-text rounded px-1.5 py-0.5 font-mono bg-alt-surface">
               Esc
             </kbd>
           </div>

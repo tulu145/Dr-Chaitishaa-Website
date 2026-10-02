@@ -36,7 +36,7 @@ export default function Header({ onOpenDrawer }) {
           {/* Logo / brand */}
           <NavLink
             to="/"
-            className="font-display font-semibold text-xl md:text-2xl text-accent-text focus-visible:outline-2 focus-visible:outline-accent-text rounded"
+            className="font-display font-semibold text-base sm:text-xl md:text-2xl text-accent-text focus-visible:outline-2 focus-visible:outline-accent-text rounded truncate max-w-[160px] sm:max-w-none"
           >
             Dr. Chaitishaa
           </NavLink>

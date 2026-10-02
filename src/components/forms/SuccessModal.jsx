@@ -116,7 +116,7 @@ export default function SuccessModal({ leadId, channelResults, whatsAppUrl, onCl
         {bothFailed && (
           <div className="mb-4 text-sm space-y-1">
             <a href="tel:+919051375635" className="block text-accent-text underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-accent-text rounded">
-              Call +91 9051375635
+              Text +91 9051375635
             </a>
           </div>
         )}

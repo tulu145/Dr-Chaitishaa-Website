@@ -20,7 +20,7 @@ export default function FloatingActions() {
       <a
         href="tel:+919051375635"
         className="bg-brand-btn-bg text-brand-btn-text p-3 rounded-full shadow-lg hover:scale-105 transition-transform focus-visible:outline-accent-text flex items-center justify-center group"
-        aria-label="Call +91 9051375635"
+        aria-label="Text +91 9051375635"
       >
         <Phone className="w-6 h-6" />
       </a>
