@@ -68,6 +68,9 @@ export default function CommandPalette() {
     } else if (item.type === 'consultation') {
       const typeParam = new URL(item.href, window.location.origin).searchParams.get('type');
       dispatch(openBookingModal(typeParam));
+    } else if (item.type === 'service') {
+      // For services, navigate to booking page with service parameter
+      navigate(`/book?service=${item.id}`);
     } else {
       navigate(item.href);
     }

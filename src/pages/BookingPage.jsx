@@ -1,6 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import usePageMeta from '@/hooks/usePageMeta.js';
 import BookingWizard from '@/components/forms/BookingWizard.jsx';
+import { servicesCatalog } from '@/data/services.js';
 
 export default function BookingPage() {
   usePageMeta({
@@ -10,7 +11,27 @@ export default function BookingPage() {
   });
 
   const [searchParams] = useSearchParams();
-  const initialType = searchParams.get('type') || null;
+  const serviceParam = searchParams.get('service');
+  const typeParam = searchParams.get('type');
+  
+  // Find consultation type from service ID
+  let initialType = typeParam || null;
+  
+  if (serviceParam) {
+    // Find which category contains this service
+    for (const category of servicesCatalog.categories) {
+      const service = category.services.find(s => s.id === serviceParam);
+      if (service) {
+        // For Vastu services, use the specific service as consultation type
+        if (category.id === 'vastu') {
+          initialType = serviceParam; // e.g., "vastu-residential", "vastu-commercial"
+        } else {
+          initialType = category.consultationType;
+        }
+        break;
+      }
+    }
+  }
 
   return (
     <div className="flex-1 w-full max-w-[720px] mx-auto px-4 sm:px-6 py-10 sm:py-14 md:py-20">
