@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { companyStats } from '@/data/stats';
+import CountingNumber from './CountingNumber';
 
 export default function StatsTicker() {
   const [isVisible, setIsVisible] = useState(false);
@@ -31,7 +32,14 @@ export default function StatsTicker() {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             } motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0`}
           >
-            <span className="font-display text-4xl text-accent-text">{stat.value}</span>
+            <span className="font-display text-4xl text-accent-text">
+              <CountingNumber 
+                target={parseInt(stat.value.replace(/[^\d]/g, '')) || 0} 
+                suffix={stat.value.replace(/[\d,]/g, '')} 
+                inView={isVisible}
+                duration={2000 + i * 200}
+              />
+            </span>
             <span className="text-sm text-muted-text font-medium uppercase tracking-wider">{stat.label}</span>
           </div>
         ))}

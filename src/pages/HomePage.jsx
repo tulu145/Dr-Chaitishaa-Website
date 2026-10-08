@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import usePageMeta from '@/hooks/usePageMeta';
-import StatsTicker from '@/components/ui/StatsTicker';
+import CountingNumber from '@/components/ui/CountingNumber';
 import { pressCoverage } from '@/data/press';
 import { servicesCatalog } from '@/data/services';
 import logoUrl from '@/assets/logo.webp';
@@ -110,7 +110,8 @@ export default function HomePage() {
         variants={fadeUp}
         className="bg-alt-surface border-y border-line py-8"
       >
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-10 md:gap-12 text-center">
+        {/* Top Stats Row */}
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-10 md:gap-12 text-center mb-8">
           <div className="flex items-center gap-4">
             <span className="bg-brand-btn-bg text-accent-text p-3 rounded-full shadow-lg shrink-0">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -118,14 +119,18 @@ export default function HomePage() {
               </svg>
             </span>
             <div className="flex flex-col items-start">
-              <span className="font-display text-2xl sm:text-3xl font-semibold text-text">100%</span>
+              <span className="font-display text-2xl sm:text-3xl font-semibold text-text">
+                <CountingNumber target={100} suffix="%" />
+              </span>
               <span className="text-xs sm:text-sm font-medium tracking-widest uppercase text-muted-text">Transformation</span>
             </div>
           </div>
           <div className="hidden sm:block w-px h-12 bg-line" />
           <div className="flex items-center gap-4">
             <div className="flex flex-col items-start">
-              <span className="font-display text-2xl sm:text-3xl font-semibold text-text">0%</span>
+              <span className="font-display text-2xl sm:text-3xl font-semibold text-text">
+                <CountingNumber target={0} suffix="%" />
+              </span>
               <span className="text-xs sm:text-sm font-medium tracking-widest uppercase text-muted-text">Risk</span>
             </div>
           </div>
@@ -136,10 +141,41 @@ export default function HomePage() {
             </span>
           </div>
         </div>
+        
+        {/* Bottom Stats Row */}
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-4 text-center">
+          <div className="flex flex-col gap-2">
+            <span className="font-display text-2xl sm:text-3xl md:text-4xl text-accent-text">
+              <CountingNumber target={10} suffix="+" />
+            </span>
+            <span className="text-xs sm:text-sm text-muted-text font-medium uppercase tracking-wider">Years Experience</span>
+          </div>
+          <div className="flex flex-col gap-2">
+            <span className="font-display text-2xl sm:text-3xl md:text-4xl text-accent-text">
+              <CountingNumber target={7151} suffix="+" />
+            </span>
+            <span className="text-xs sm:text-sm text-muted-text font-medium uppercase tracking-wider">Projects Delivered</span>
+          </div>
+          <div className="flex flex-col gap-2">
+            <span className="font-display text-xl sm:text-2xl md:text-3xl text-accent-text">
+              <CountingNumber target={96576519} suffix="+" />
+            </span>
+            <span className="text-xs sm:text-sm text-muted-text font-medium uppercase tracking-wider">Yards Covered</span>
+          </div>
+          <div className="flex flex-col gap-2">
+            <span className="font-display text-2xl sm:text-3xl md:text-4xl text-accent-text">
+              <CountingNumber target={2000} suffix="+" />
+            </span>
+            <span className="text-xs sm:text-sm text-muted-text font-medium uppercase tracking-wider">Student & Location Coverage</span>
+          </div>
+          <div className="flex flex-col gap-2">
+            <span className="font-display text-2xl sm:text-3xl md:text-4xl text-accent-text">
+              <CountingNumber target={4} suffix="+" />
+            </span>
+            <span className="text-xs sm:text-sm text-muted-text font-medium uppercase tracking-wider">Countries Served (India, USA...)</span>
+          </div>
+        </div>
       </motion.section>
-
-      {/* ── Stats Ticker ───────────────────────────────────────── */}
-      <StatsTicker />
 
       {/* ── Services Showcase ──────────────────────────────────── */}
       <section className="py-14 sm:py-20 max-w-[1200px] mx-auto px-4 sm:px-6">
