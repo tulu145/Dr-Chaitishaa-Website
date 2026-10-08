@@ -104,14 +104,12 @@ export default function FaqPage() {
             </svg>
             WhatsApp Support
           </a>
-          <a
-            href={whatsappLink(WHATSAPP_MESSAGES.booking)}
-            target="_blank"
-            rel="noopener noreferrer"
+          <NavLink
+            to="/book"
             className="bg-brand-btn-bg text-brand-btn-text px-6 py-2.5 rounded font-medium hover:opacity-90 hover:scale-105 transition-all focus-visible:outline-accent-text text-sm sm:text-base"
           >
             Book Consultation
-          </a>
+          </NavLink>
         </div>
       </motion.div>
     </motion.div>
