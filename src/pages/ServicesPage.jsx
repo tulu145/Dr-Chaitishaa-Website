@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams, useLocation } from 'react-router-dom';
+import { useSearchParams, useLocation, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import usePageMeta from '@/hooks/usePageMeta';
 import { servicesCatalog } from '@/data/services';
@@ -60,12 +60,12 @@ function Accordion({ service }) {
           >
             <div className="p-4 sm:p-5 pt-0 border-t border-line mt-2">
               <p className="text-sm sm:text-base text-muted-text mb-4 leading-relaxed">{service.description}</p>
-              <a
-                href={`/book?service=${service.id}`}
+              <Link
+                to={`/book?service=${service.id}`}
                 className="inline-block text-sm font-medium text-brand-btn-text bg-brand-btn-bg px-4 sm:px-5 py-2 sm:py-2.5 rounded focus-visible:outline-accent-text hover:opacity-90 hover:shadow-md transition-all hover:-translate-y-0.5"
               >
                 Book this service
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}
