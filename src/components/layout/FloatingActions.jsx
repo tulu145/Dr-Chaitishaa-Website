@@ -1,7 +1,7 @@
 import { WhatsAppIcon } from '@/components/ui/BrandIcons';
 
 export default function FloatingActions() {
-  const whatsappUrl = import.meta.env.VITE_WHATSAPP_COMMUNITY_URL || 'https://chat.whatsapp.com/IBYTLSaMOYaKli4goU5sFe';
+  const whatsappUrl = 'https://chat.whatsapp.com/IBYTLSaMOYaKIi4goU5sFe';
 
   return (
     <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-4 no-print" data-floating>
