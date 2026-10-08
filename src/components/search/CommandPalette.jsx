@@ -62,8 +62,10 @@ export default function CommandPalette() {
     Analytics.searchSelect(item.id, item.type);
     dispatch(closeSearch());
 
-    if (item.type === 'consultation') {
-      // Extract type from href (/book?type=numerology)
+    if (item.external) {
+      // External URL — open in new tab, noopener
+      window.open(item.href, '_blank', 'noopener,noreferrer');
+    } else if (item.type === 'consultation') {
       const typeParam = new URL(item.href, window.location.origin).searchParams.get('type');
       dispatch(openBookingModal(typeParam));
     } else {

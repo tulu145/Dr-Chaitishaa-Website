@@ -40,6 +40,10 @@ export function labelFor(consultationType) {
   return CONSULTATION_LABELS[consultationType] || consultationType;
 }
 
+// External profile URLs
+export const GMB_URL = 'https://share.google/8t4r14HEaXmySx6JW';
+export const PHONE   = '+919051375635';
+
 // Storage keys
 export const STORAGE_KEYS = {
   THEME: 'theme',

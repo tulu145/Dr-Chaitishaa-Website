@@ -134,6 +134,7 @@ export default function BookingWizard({ initialType = null, onDone }) {
     defaultValues: {
       ...values,
       consultationType: initialType || values.consultationType || '',
+      countryCode: values.countryCode || '+91',
       website: '', // honeypot
     },
   });

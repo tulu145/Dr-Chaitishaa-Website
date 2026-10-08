@@ -12,12 +12,15 @@ export function buildSearchIndex() {
 
   // Pages
   const pages = [
-    { id: 'page-home', title: 'Home', excerpt: 'Welcome to Dr. Chaitishaa | Celestial Insights Healing.', href: '/', keywords: ['home', 'celestial insights', 'healing'] },
-    { id: 'page-services', title: 'Services', excerpt: 'Vedic astrology, numerology, Vastu, tarot, sound healing, counselling and corporate training.', href: '/services', keywords: ['services', 'offerings'] },
-    { id: 'page-about', title: 'About Dr. Chaitishaa', excerpt: '10+ years experience, 7,151+ projects, global practice.', href: '/about', keywords: ['about', 'biography', 'credentials', 'experience'] },
-    { id: 'page-faq', title: 'FAQ', excerpt: 'Frequently asked questions about consultations, booking, and more.', href: '/faq', keywords: ['faq', 'questions', 'help'] },
-    { id: 'page-book', title: 'Book a Consultation', excerpt: 'Schedule a consultation with Dr. Chaitishaa.', href: '/book', keywords: ['book', 'booking', 'appointment', 'schedule'] },
-    { id: 'page-privacy', title: 'Privacy Policy', excerpt: 'How your personal information is collected, used and stored.', href: '/privacy', keywords: ['privacy', 'data', 'gdpr', 'dpdp'] },
+    { id: 'page-home',     title: 'Home',                excerpt: 'Welcome to Dr. Chaitishaa | Celestial Insights Healing.',                              href: '/',           keywords: ['home', 'celestial insights', 'healing'] },
+    { id: 'page-services', title: 'Services',            excerpt: 'Vedic astrology, numerology, Vastu, tarot, sound healing, counselling and corporate training.', href: '/services',   keywords: ['services', 'offerings'] },
+    { id: 'page-about',    title: 'About Dr. Chaitishaa',excerpt: '10+ years experience, 7,151+ projects, global practice.',                              href: '/about',       keywords: ['about', 'biography', 'credentials', 'experience'] },
+    { id: 'page-faq',      title: 'FAQ',                 excerpt: 'Frequently asked questions about consultations, booking, and more.',                     href: '/faq',         keywords: ['faq', 'questions', 'help'] },
+    { id: 'page-book',     title: 'Book a Consultation', excerpt: 'Schedule a consultation with Dr. Chaitishaa.',                                          href: '/book',        keywords: ['book', 'booking', 'appointment', 'schedule'] },
+    { id: 'page-privacy',  title: 'Privacy Policy',      excerpt: 'How your personal information is collected, used and stored.',                           href: '/privacy',     keywords: ['privacy', 'data', 'gdpr', 'dpdp'] },
+    { id: 'page-courses',  title: 'Courses',             excerpt: 'Online courses by Dr. Chaitishaa on Graphy.',                                           href: 'https://chaitishadiva.graphy.com/t/home', external: true, keywords: ['courses', 'online', 'learn', 'graphy'] },
+    { id: 'page-products', title: 'Products',            excerpt: 'Browse products by Dr. Chaitishaa.',                                                    href: '/products',    keywords: ['products', 'shop', 'buy'] },
+    { id: 'page-blog',     title: 'Blog',                excerpt: 'Articles and insights from Dr. Chaitishaa on numerology, Vastu and Vedic wisdom.',      href: '/blog',        keywords: ['blog', 'articles', 'insights', 'posts', 'wisdom'] },
   ];
 
   for (const p of pages) {

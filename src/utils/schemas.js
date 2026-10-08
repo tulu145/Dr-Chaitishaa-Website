@@ -7,6 +7,30 @@ const todayISO = () => new Date().toISOString().split('T')[0];
 // eslint-disable-next-line no-control-regex
 const clean = (s) => s.replace(/[\x00-\x1F\x7F]/g, '').trim();
 
+// Sanitize phone: strip spaces, dashes, parens, leading zeros after country code
+const sanitizePhone = (s, countryCode = '+91') => {
+  const stripped = s.replace(/[\s\-()]/g, '');
+  
+  // For +91, strip leading zeros at the start
+  if (countryCode === '+91' && stripped.startsWith('0')) {
+    return stripped.replace(/^0+/, '');
+  }
+  return stripped;
+};
+
+// Validate phone based on country code
+const validatePhone = (phone, countryCode = '+91') => {
+  const sanitized = sanitizePhone(phone, countryCode);
+  
+  // +91 (India): must start with [6-9] and be exactly 10 digits
+  if (countryCode === '+91') {
+    return /^[6-9]\d{9}$/.test(sanitized);
+  }
+  
+  // Generic: 6-14 digits
+  return /^\d{6,14}$/.test(sanitized);
+};
+
 export const consultationSchema = z
   .object({
     consultationType: z.enum(CONSULTATION_TYPES, {
@@ -16,11 +40,14 @@ export const consultationSchema = z
       .string()
       .transform(clean)
       .pipe(z.string().min(2, 'Name must be at least 2 characters').max(120, 'Name too long')),
-    countryCode: z.string().regex(/^\+\d{1,4}$/, 'Invalid country code'),
+    countryCode: z
+      .string()
+      .default('+91')
+      .pipe(z.string().regex(/^\+\d{1,4}$/, 'Invalid country code')),
     phone: z
       .string()
-      .transform((s) => s.replace(/[\s\-()]/g, ''))
-      .pipe(z.string().regex(/^\d{6,14}$/, 'Enter a valid phone number')),
+      .transform((s) => sanitizePhone(s))
+      .pipe(z.string().min(1, 'Phone is required')),
     email: z.string().email('Enter a valid email address').max(254),
     preferredDate: z
       .string()
@@ -49,6 +76,17 @@ export const consultationSchema = z
     consent: z.literal(true, { error: 'Please accept to continue' }),
   })
   .superRefine((data, ctx) => {
+    // Validate phone with country code awareness
+    if (!validatePhone(data.phone, data.countryCode)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['phone'],
+        message: data.countryCode === '+91'
+          ? 'Phone number must be 10 digits starting with 6-9'
+          : 'Enter a valid phone number',
+      });
+    }
+
     if (BIRTH_REQUIRED_TYPES.includes(data.consultationType)) {
       if (!data.birthDate) {
         ctx.addIssue({
@@ -70,10 +108,13 @@ export const bookingSchema = z.object({
     .transform(clean)
     .pipe(z.string().min(2, 'Name must be at least 2 characters').max(120)),
   email: z.string().email('Please enter a valid email address').max(254),
-  countryCode: z.string().regex(/^\+\d{1,4}$/, 'Invalid country code'),
+  countryCode: z
+    .string()
+    .default('+91')
+    .pipe(z.string().regex(/^\+\d{1,4}$/, 'Invalid country code')),
   phone: z
     .string()
-    .transform((s) => s.replace(/[\s\-()]/g, ''))
-    .pipe(z.string().regex(/^\d{6,14}$/, 'Enter a valid phone number')),
+    .transform((s) => sanitizePhone(s))
+    .pipe(z.string().min(1, 'Phone is required')),
   notes: z.string().max(1000, 'Notes too long').optional().or(z.literal('')),
 });

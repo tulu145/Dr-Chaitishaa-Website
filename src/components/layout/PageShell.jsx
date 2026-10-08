@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 import MobileDrawer from './MobileDrawer.jsx';
+import ScrollToTop from './ScrollToTop.jsx';
 import ScrollProgress from './ScrollProgress.jsx';
 import SkipLink from './SkipLink.jsx';
 import FloatingActions from './FloatingActions.jsx';
@@ -61,6 +62,7 @@ export default function PageShell({ children }) {
 
       <OfflineBanner />
       <SkipLink />
+      <ScrollToTop />
       <ScrollProgress />
       <Header
         onOpenDrawer={() => dispatch(openDrawer())}

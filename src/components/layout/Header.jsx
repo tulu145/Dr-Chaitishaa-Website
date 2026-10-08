@@ -4,8 +4,7 @@ import { useDispatch } from 'react-redux';
 import { navLinks } from '@/data/nav.js';
 import ThemeToggle from '@/components/ui/ThemeToggle.jsx';
 import { Menu, Search } from 'lucide-react';
-import { openSearch } from '@/redux/slices/uiSlice.js';
-import { openBookingModal } from '@/redux/slices/uiSlice.js';
+import { openSearch, openBookingModal } from '@/redux/slices/uiSlice.js';
 
 export default function Header({ onOpenDrawer }) {
   const dispatch = useDispatch();
@@ -25,7 +24,7 @@ export default function Header({ onOpenDrawer }) {
 
   return (
     <>
-      {/* 1px sentinel above the fold — when it leaves view the header gets glass */}
+      {/* 1px sentinel — triggers glass effect on scroll */}
       <div ref={sentinelRef} className="absolute top-0 left-0 w-full h-[1px] invisible" aria-hidden="true" />
 
       <header
@@ -33,7 +32,8 @@ export default function Header({ onOpenDrawer }) {
         className="sticky top-0 z-40 transition-colors duration-300 [&.is-glass]:bg-bg/70 [&.is-glass]:backdrop-blur-md [&.is-glass]:border-b [&.is-glass]:border-line"
       >
         <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between gap-4">
-          {/* Logo / brand */}
+
+          {/* Brand */}
           <NavLink
             to="/"
             className="font-display font-semibold text-base sm:text-xl md:text-2xl text-accent-text focus-visible:outline-2 focus-visible:outline-accent-text rounded truncate max-w-[160px] sm:max-w-none"
@@ -42,37 +42,50 @@ export default function Header({ onOpenDrawer }) {
           </NavLink>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.path}
-                to={link.path}
-                end={link.path === '/'}
-                className={({ isActive }) =>
-                  `text-sm font-medium relative py-1 focus-visible:outline-2 focus-visible:outline-accent-text rounded transition-colors ${
-                    isActive ? 'text-accent-text' : 'text-text hover:text-accent-text'
-                  }`
-                }
-                aria-current={({ isActive }) => (isActive ? 'page' : undefined)}
-              >
-                {({ isActive }) => (
-                  <>
-                    {link.label}
-                    <span
-                      className={`absolute bottom-0 left-0 w-full h-[2px] bg-accent-text origin-left transition-transform duration-200 ${
-                        isActive ? 'scale-x-100' : 'scale-x-0'
-                      }`}
-                      aria-hidden="true"
-                    />
-                  </>
-                )}
-              </NavLink>
-            ))}
+          <nav className="hidden md:flex items-center gap-1 lg:gap-2" aria-label="Main navigation">
+            {navLinks.map((link) =>
+              link.external ? (
+                /* External link — plain <a>, new tab, noopener */
+                <a
+                  key={link.path}
+                  href={link.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-sm font-medium px-2 py-1 rounded text-text hover:text-accent-text focus-visible:outline-2 focus-visible:outline-accent-text transition-colors"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                /* Internal link — NavLink with active underline */
+                <NavLink
+                  key={link.path}
+                  to={link.path}
+                  end={link.path === '/'}
+                  className={({ isActive }) =>
+                    `relative text-sm font-medium px-2 py-1 rounded focus-visible:outline-2 focus-visible:outline-accent-text transition-colors ${
+                      isActive ? 'text-accent-text' : 'text-text hover:text-accent-text'
+                    }`
+                  }
+                  aria-current={({ isActive }) => (isActive ? 'page' : undefined)}
+                >
+                  {({ isActive }) => (
+                    <>
+                      {link.label}
+                      <span
+                        className={`absolute bottom-0 left-0 w-full h-[2px] bg-accent-text origin-left transition-transform duration-200 ${
+                          isActive ? 'scale-x-100' : 'scale-x-0'
+                        }`}
+                        aria-hidden="true"
+                      />
+                    </>
+                  )}
+                </NavLink>
+              )
+            )}
           </nav>
 
           {/* Desktop actions */}
           <div className="hidden md:flex items-center gap-2">
-            {/* Search button */}
             <button
               type="button"
               onClick={() => dispatch(openSearch())}
@@ -80,11 +93,9 @@ export default function Header({ onOpenDrawer }) {
               className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-line text-muted-text hover:text-text hover:border-text text-sm transition-colors focus-visible:outline-2 focus-visible:outline-accent-text"
             >
               <Search size={14} aria-hidden="true" />
-              <span className="hidden lg:inline">Search</span>
-              <kbd className="hidden lg:inline text-xs font-mono bg-alt-surface px-1 rounded">Ctrl K</kbd>
+              <span>Search</span>
             </button>
 
-            {/* Book CTA */}
             <button
               type="button"
               onClick={() => dispatch(openBookingModal(null))}
@@ -117,6 +128,7 @@ export default function Header({ onOpenDrawer }) {
               <Menu className="w-6 h-6" aria-hidden="true" />
             </button>
           </div>
+
         </div>
       </header>
     </>

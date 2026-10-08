@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Core pages -->
   <url>
     <loc>https://www.celestialinsightshealing.com/</loc>
     <changefreq>weekly</changefreq>
@@ -25,9 +27,36 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- Products -->
+  <url>
+    <loc>https://www.celestialinsightshealing.com/products</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog listing — updated frequently once posts are published -->
+  <url>
+    <loc>https://www.celestialinsightshealing.com/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!--
+    Individual blog post URLs follow the pattern:
+      https://www.celestialinsightshealing.com/blog/:slug
+    Add each published post below, e.g.:
+    <url>
+      <loc>https://www.celestialinsightshealing.com/blog/power-of-numerology</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+    </url>
+  -->
+
+  <!-- Legal -->
   <url>
     <loc>https://www.celestialinsightshealing.com/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+
 </urlset>

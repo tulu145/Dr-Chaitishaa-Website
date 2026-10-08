@@ -12,6 +12,9 @@ const BookingPage = lazy(() => import('@/pages/BookingPage'));
 const PortalPage = lazy(() => import('@/pages/PortalPage'));
 const DashboardPage = lazy(() => import('@/pages/DashboardPage'));
 const PrivacyPage = lazy(() => import('@/pages/PrivacyPage'));
+const ProductsPage = lazy(() => import('@/pages/ProductsPage'));
+const BlogPage = lazy(() => import('@/pages/BlogPage'));
+const BlogPostPage = lazy(() => import('@/pages/BlogPostPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
 function App() {
@@ -24,6 +27,9 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/book" element={<BookingPage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/portal" element={<PortalPage />} />
           <Route 
             path="/portal/dashboard" 
