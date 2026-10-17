@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import usePageMeta from '@/hooks/usePageMeta';
 import { pressCoverage } from '@/data/press';
-import logoUrl from '@/assets/logo.jpg';
+import drImageUrl from '/dr.png';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -30,13 +30,13 @@ export default function AboutPage() {
         variants={staggerContainer}
         className="flex flex-col md:grid md:grid-cols-12 gap-10 md:gap-12 items-center md:items-start mb-16 sm:mb-20"
       >
-        {/* Circle logo */}
+        {/* Square portrait – safe-area crop */}
         <motion.div variants={fadeUp} className="md:col-span-5 flex justify-center w-full">
-          <div className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl border-4 border-accent-text group shrink-0">
+          <div className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-2xl overflow-hidden shadow-2xl border-4 border-accent-text group shrink-0">
             <img
-              src={logoUrl}
+              src={drImageUrl}
               alt="Dr. Chaitishaa Portrait"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
+              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-1000 ease-out"
               loading="lazy"
             />
           </div>
